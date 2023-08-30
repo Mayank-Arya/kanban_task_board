@@ -8,7 +8,7 @@ const createTask = async (req, res) => {
     console.log('Received data:', title, description, status);
     res.status(201).json(newTask);
   } catch (err) {
-    console.error('Error saving task:', err); // Add this line
+    console.error('Error saving task:', err); 
     res.status(500).json({ message: err.message });
   }
 };
@@ -31,8 +31,6 @@ const updateTask = async (req, res) => {
   try {
     const { id } = req.params;
     const { status, title, description } = req.body;
-
-    // Validate status (similar to what you're already doing)
 
     const updatedTask = await Task.findByIdAndUpdate(
       id,

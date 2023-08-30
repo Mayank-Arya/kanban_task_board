@@ -46,7 +46,6 @@ async function renderTasks() {
     deleteButton.textContent = "Delete";
     deleteButton.classList.add("delete-button");
     deleteButton.addEventListener("click", () => {
-      // Removing the task from the UI and database
       taskCard.remove();
       deleteTask(task._id);
     });
@@ -91,7 +90,7 @@ async function updateTaskTitle(taskId, newTitle, newDesc) {
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ title: newTitle, description: newDesc }), // Include new description
+    body: JSON.stringify({ title: newTitle, description: newDesc }), 
   });
 
   if (response.ok) {
