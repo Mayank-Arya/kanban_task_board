@@ -1,5 +1,8 @@
 # kanban_task_board
 
+* frontend deployment - https://kanban-task-board-gamma.vercel.app/
+* backend deploytment - https://task2-w9fm.onrender.com/
+
 # Project Description: Task Management Web Application
 
 The Task Management Web Application is a user-friendly platform designed to streamline the organization and tracking of tasks, enhancing productivity and collaboration. This project aims to provide users with an intuitive interface to manage their tasks efficiently by offering features such as task creation, status tracking, and editing. The application is built using a combination of frontend technologies for the user interface and backend technologies to manage the data and interactions with the database.
