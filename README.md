@@ -55,4 +55,5 @@ The Task Management Web Application offers several benefits, including:
 * Improved productivity by providing clear visibility into task statuses.
 * Easy access to tasks from various devices.
 * An enjoyable user experience with an aesthetically pleasing interface.
-* This project exemplifies the integration of frontend and backend technologies to create a practical and visually appealing web application that addresses the common need * for effective task management. Whether used by individuals or teams, the Task Management Web Application is a valuable tool for staying organized, focused, and on top of tasks and projects.
+
+This project exemplifies the integration of frontend and backend technologies to create a practical and visually appealing web application that addresses the common need * for effective task management. Whether used by individuals or teams, the Task Management Web Application is a valuable tool for staying organized, focused, and on top of tasks and projects.
