@@ -2,7 +2,7 @@ const kanbanBoard = document.querySelector(".kanban-board");
 
 async function fetchTasks() {
   try {
-    const response = await fetch("http://localhost:9090/api/tasks");
+    const response = await fetch("https://task-vw2k.onrender.com/api/tasks");
     const tasks = await response.json();
     return tasks;
   } catch (error) {
@@ -30,14 +30,15 @@ async function renderTasks() {
     const editButton = document.createElement("button");
     editButton.textContent = "Edit";
     editButton.classList.add("edit-button");
-    editButton.addEventListener("click", () => {
+    editButton.addEventListener("click", async () => {
       const newTitle = prompt("Enter new title:");
       const newDesc = prompt("Enter new Description");
       if (newTitle && newDesc) {
         taskTitle.textContent = newTitle;
         taskDescription.textContent = newDesc;
-        // Update task title in the database
-        updateTaskTitle(task._id, newTitle, newDesc);
+
+        // Update task title and description in the database
+        await updateTaskTitle(task._id, newTitle, newDesc);
       }
     });
 
@@ -78,31 +79,37 @@ async function renderTasks() {
 
     const column = document.getElementById(task.status.toLowerCase());
     if (column) {
-      // Remove the task card from its current position
       taskCard.remove();
-
-      // Append the task card to the new column
       column.appendChild(taskCard);
     }
   });
 }
 
-async function updateTaskTitle(taskId, newTitle) {
-  const response = await fetch(`http://localhost:9090/api/tasks/${taskId}`, {
-    method: "PUT",
+async function updateTaskTitle(taskId, newTitle, newDesc) {
+  const response = await fetch(`https://task2-w9fm.onrender.com/api/tasks/${taskId}`, {
+    method: 'PUT',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ title: newTitle }),
+    body: JSON.stringify({ title: newTitle, description: newDesc }), // Include new description
   });
-  const updatedTask = await response.json();
-  console.log("Task title updated:", updatedTask);
+
+  if (response.ok) {
+    const updatedTask = await response.json();
+    console.log('Task title and description updated:', updatedTask);
+  } else {
+    console.error('Error updating task title and description');
+  }
 }
 
+
 async function deleteTask(taskId) {
-  const response = await fetch(`http://localhost:9090/api/tasks/${taskId}`, {
-    method: "DELETE",
-  });
+  const response = await fetch(
+    `https://task-vw2k.onrender.com/api/tasks/${taskId}`,
+    {
+      method: "DELETE",
+    }
+  );
   if (response.ok) {
     console.log("Task deleted");
   } else {
@@ -114,13 +121,16 @@ renderTasks();
 
 async function updateTaskStatus(taskId, newStatus) {
   try {
-    const res = await fetch(`http://localhost:9090/api/tasks/${taskId}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ status: newStatus }),
-    });
+    const res = await fetch(
+      `https://task-vw2k.onrender.com/api/tasks/${taskId}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ status: newStatus }),
+      }
+    );
 
     if (!res.ok) {
       throw new Error("Failed to update task status");

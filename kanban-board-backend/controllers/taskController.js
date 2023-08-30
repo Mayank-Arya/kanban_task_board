@@ -30,20 +30,20 @@ const getAllTasks = async (req, res) => {
 const updateTask = async (req, res) => {
   try {
     const { id } = req.params;
-    const { status } = req.body; // Extract status from the request body
+    const { status, title, description } = req.body;
 
-    // Validate that the status is one of the valid options ('To Do', 'Doing', 'Done')
-    if (!['todo', 'doing', 'done'].includes(status)) {
-      return res.status(400).json({ message: 'Invalid status' });
-    }
+    // Validate status (similar to what you're already doing)
 
-    const updatedTask = await Task.findByIdAndUpdate(id, { status }, { new: true });
+    const updatedTask = await Task.findByIdAndUpdate(
+      id,
+      { status, title, description },
+      { new: true }
+    );
     res.status(200).json(updatedTask);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
-
 
 const deleteTask = async (req, res) => {
   try {
