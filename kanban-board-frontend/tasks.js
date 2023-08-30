@@ -36,8 +36,6 @@ async function renderTasks() {
       if (newTitle && newDesc) {
         taskTitle.textContent = newTitle;
         taskDescription.textContent = newDesc;
-
-        // Update task title and description in the database
         await updateTaskTitle(task._id, newTitle, newDesc);
       }
     });

@@ -1,4 +1,3 @@
-// kanban-board-backend/models/Task.js
 const mongoose = require('mongoose');
 
 const taskSchema = new mongoose.Schema({
@@ -12,7 +11,7 @@ const taskSchema = new mongoose.Schema({
   },
   status:{
     type: String, 
-    enum: ['todo', 'doing', 'done'], // Enum values
+    enum: ['todo', 'doing', 'done'], 
     required: true
   },
 });
